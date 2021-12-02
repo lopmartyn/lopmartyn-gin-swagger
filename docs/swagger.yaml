@@ -1,0 +1,304 @@
+definitions:
+  helper.HTTPError:
+    properties:
+      code:
+        example: 999
+        type: integer
+      message:
+        example: example response
+        type: string
+    type: object
+  model.Employee:
+    properties:
+      departmentID:
+        type: integer
+      empID:
+        example: EMP-xxxx
+        type: string
+      firstName:
+        example: Firstname
+        type: string
+      genderID:
+        type: integer
+      lastName:
+        example: Lastname
+        type: string
+      phoneNo:
+        example: 02-000-0000
+        type: string
+      requestID:
+        example: REQ-xxxx
+        type: string
+      titleID:
+        type: integer
+    type: object
+  model.Gender:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  model.Users:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /employee/create/:
+    post:
+      consumes:
+      - application/json
+      description: insert employee information
+      parameters:
+      - description: Create employee
+        in: body
+        name: employee
+        required: true
+        schema:
+          $ref: '#/definitions/model.Employee'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Employee'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "404":
+          description: A Employee was not found
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+      summary: Insert employee data
+      tags:
+      - employees
+  /employee/delete/{employeeID}:
+    delete:
+      consumes:
+      - application/json
+      description: delete employee information
+      parameters:
+      - description: employeeID of employee to get the data
+        in: path
+        name: employeeID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Employee'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "404":
+          description: A Employee was not found
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+      summary: Delete employee data
+      tags:
+      - employees
+  /employee/get/{employeeID}:
+    get:
+      consumes:
+      - application/json
+      description: get employee information
+      parameters:
+      - description: employeeID of employee to get the data
+        in: path
+        name: employeeID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Employee'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "404":
+          description: A Employee was not found
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+      summary: Get employee data by Employee ID
+      tags:
+      - employees
+  /employee/update/:
+    put:
+      consumes:
+      - application/json
+      description: update employee information
+      parameters:
+      - description: Update employee
+        in: body
+        name: employee
+        required: true
+        schema:
+          $ref: '#/definitions/model.Employee'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Employee'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "404":
+          description: A Employee was not found
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+      summary: Update employee data
+      tags:
+      - employees
+  /gender/get/all:
+    get:
+      consumes:
+      - application/json
+      description: get gender information
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Gender'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "404":
+          description: A Gender was not found
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+      summary: Get all gender data
+      tags:
+      - gender
+  /user/create:
+    post:
+      consumes:
+      - application/json
+      description: Create registers by record
+      parameters:
+      - description: Create supplier
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.Users'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Users'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "404":
+          description: A User ID with the specified ID was not found
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+      summary: Register user
+      tags:
+      - users
+  /user/get/all:
+    get:
+      consumes:
+      - application/json
+      description: get user information
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Users'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "404":
+          description: A Gender was not found
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.HTTPError'
+      summary: Get all user data
+      tags:
+      - users
+swagger: "2.0"
