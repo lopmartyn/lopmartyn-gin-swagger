@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  db:
+    container_name: lopmartyn-db
+    image: postgres
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: lopmartyn
+      POSTGRES_PASSWORD: lopmartyn
+
+    ports:
+      - 65432:5432
+    volumes:
+      - ./db:/var/lib/postgresql/data
+      - ./init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+    networks:
+      - db
+
+networks:
+  db:
+    driver: bridge
+
+volumes:
+  pgadmin_root_prefs:
+    driver: local
+  postgresql_data:
+    driver: local
+  postgresql_bin:
+    driver: local
