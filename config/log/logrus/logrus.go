@@ -18,5 +18,4 @@ func init() {
 	// log.WarnLevel to show both of warning and error.
 	// log.ErrorLevel to only error.
 	log.SetLevel(log.InfoLevel)
-
 }
