@@ -8,6 +8,7 @@
   `$ go get github.com/uptrace/bun/dialect/pgdialect`
 `$ go get github.com/uptrace/bun/driver/pgdriver`
 - Swagger `$ go get -u github.com/go-swagger/go-swagger/cmd/swagger`
+- logrus `$ go get -u github.com/sirupsen/logrus` 
 - Docker Desktop
 - Goland IDE(if you have licence)
 
